@@ -12,13 +12,13 @@ import java.util.List;
 /**
  * Created by János on 9/24/2016.
  */
-public class PokerPlayer19 implements IPlayer {
+public class PokerPlayer20 implements IPlayer {
 
-    public static final String VERSION = "19";
+    public static final String VERSION = "20";
 
     private int threshold = 100;
 
-    public PokerPlayer19() {
+    public PokerPlayer20() {
     }
 
     public String getVersion() {
@@ -54,7 +54,7 @@ public class PokerPlayer19 implements IPlayer {
                 } else {
                     // alacsony parnal csak tartunk
                     System.err.println("elso korben vagyunk + parunk van kezben + alacsony par");
-                    return Math.max(0, game.current_buy_in - player.bet);
+                    return Math.min(0, game.current_buy_in - player.bet);
                 }
             }
 
