@@ -12,7 +12,7 @@ import java.util.Map;
 
 public class XPlayer {
 
-    static final String VERSION = "3";
+    static final String VERSION = "4";
 
     public static int betRequest(GameState game) {
         // ez az ellenorzes holddown-ra nem mukodik mert mindenkinel megjelenneka kartyak
