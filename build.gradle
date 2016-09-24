@@ -41,6 +41,9 @@ buildscript {
 dependencies {
     testCompile 'junit:junit:4.11'
     compile 'com.google.code.gson:gson:2.2.4'
+// https://mvnrepository.com/artifact/org.projectlombok/lombok
+    compile group: 'org.projectlombok', name: 'lombok', version: '1.16.10'
+
     def tomcatVersion = '7.0.11'
 
     providedCompile "org.apache.tomcat:tomcat-servlet-api:${tomcatVersion}"

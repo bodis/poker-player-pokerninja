@@ -15,6 +15,11 @@ import java.io.IOException;
 @WebServlet("/")
 public class PlayerServlet extends HttpServlet {
 
+
+    static IPlayer player = new PokerPlayer("7");
+    static IPlayer fallbackPlayer = new PokerPlayer("7-fallback");
+
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.getWriter().print("Java player is running");
@@ -22,21 +27,29 @@ public class PlayerServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        try {
+            doPost(req, resp, player);
+        } catch (Exception e) {
+            doPost(req, resp, fallbackPlayer);
+        }
+    }
+
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp, IPlayer player) throws ServletException, IOException {
         if (req.getParameter("action").equals("bet_request")) {
             String gameState = req.getParameter("game_state");
             System.err.println("\n" + gameState + "\n");
             Gson gson = new GsonBuilder().create();
-            int result = XPlayer.betRequest(gson.fromJson(gameState, GameState.class));
+            int result = player.betRequest(gson.fromJson(gameState, GameState.class));
             System.err.println("\n valasz: " + result + "\n");
             resp.getWriter().print(result);
         }
         if (req.getParameter("action").equals("showdown")) {
             String gameState = req.getParameter("game_state");
 
-            XPlayer.showdown(new JsonParser().parse(gameState));
+            player.showdown(new JsonParser().parse(gameState));
         }
         if (req.getParameter("action").equals("version")) {
-            resp.getWriter().print(XPlayer.VERSION);
+            resp.getWriter().print(player.getVersion());
         }
     }
 }
