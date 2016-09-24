@@ -13,7 +13,7 @@ public interface IBet extends Comparable<IBet> {
     IBetStrategy getStrategy();
     List<Card> getCards();
     
-    public default int compare(IBet b) {
-    	return getWeight() - b.getWeight();
+    public default int compareTo(IBet b) {
+    	return getStrategy().compareTo(b.getStrategy());
     }
 }

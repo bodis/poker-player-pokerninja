@@ -46,11 +46,11 @@ public abstract class AbstractPlayer implements IPlayer {
 //        List<IBet> bets = 
         List<Card> allCards = Lists.newLinkedList(player.hole_cards);
 
-        List<IBet> bets = calculateBets(allCards);
+        List<IBet> bets = calculateBets(allCards, game, player);
 
         allCards.addAll(game.community_cards);
 
-        bets.addAll(calculateBets(allCards));
+        bets.addAll(calculateBets(allCards, game, player));
         
         Collections.sort(bets);
 
@@ -59,10 +59,10 @@ public abstract class AbstractPlayer implements IPlayer {
 		return bets.listIterator().next().getBet();
 	}
 
-	private List<IBet> calculateBets(List<Card> cards) {
+	private List<IBet> calculateBets(List<Card> cards, GameState game, Player player) {
 		return strategies.stream()
         	.map(s -> { System.err.println("strategy : " + s.getClass().getName()); return s;})
-        	.map(s -> s.getBet(cards))
+        	.map(s -> s.getBet(cards, game, player))
         	.filter(b -> b.isPresent())
         	.map(Optional::get)
         	.collect(toList());
