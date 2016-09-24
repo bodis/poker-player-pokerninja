@@ -52,9 +52,9 @@ public class PokerPlayer18 implements IPlayer {
                     System.err.println("elso korben vagyunk + parunk van kezben + magas par");
                     return (int) Math.round((double) player.stack / 2);
                 } else {
-                    System.err.println("elso korben vagyunk + parunk van kezben + alacsony par");
                     // alacsony parnal csak tartunk
-                    return game.current_buy_in;
+                    System.err.println("elso korben vagyunk + parunk van kezben + alacsony par");
+                    return Math.min(0, game.current_buy_in - player.bet);
                 }
             }
 
