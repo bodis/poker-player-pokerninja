@@ -84,13 +84,7 @@ public class PokerPlayer20 implements IPlayer {
         // 2-nel emeles
         if (hasPair(mergedCards)) {
             System.err.println("kozossel egyutt > par: " + Arrays.toString(mergedCards.toArray()));
-            // de ha a par a kozos reszekben van, akkor az nem er semmit ezert max csak megadjuk
-            if (hasPair(game.community_cards) || hasThree(game.community_cards) || hasFour(game.community_cards)) {
-                System.err.println("kozossel egyutt > csak a kozos lapokbol vagyunk jok ezert biztos nem emelunk");
-                return Math.max(0, game.current_buy_in - player.bet);
-            } else {
-                return game.current_buy_in;
-            }
+            return Math.max(0, game.current_buy_in - player.bet);
         }
 
         // 3-4nel ALL-IN
