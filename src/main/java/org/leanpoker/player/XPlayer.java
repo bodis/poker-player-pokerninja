@@ -5,14 +5,12 @@ import org.leanpoker.player.model.Card;
 import org.leanpoker.player.model.GameState;
 import org.leanpoker.player.model.Player;
 
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+import java.util.stream.Stream;
 
 public class XPlayer {
 
-    static final String VERSION = "4";
+    static final String VERSION = "6";
 
     public static int betRequest(GameState game) {
         // ez az ellenorzes holddown-ra nem mukodik mert mindenkinel megjelenneka kartyak
@@ -30,6 +28,22 @@ public class XPlayer {
         // PAR eseten max tet
         if (hasPair(player.hole_cards)) {
             System.err.println("van par");
+            return player.stack;
+        }
+
+
+        //
+        // kozos lapokkal egyuttes szabalyok
+        //
+        final List<Card> mergedCards = new ArrayList<>();
+        mergedCards.addAll(player.hole_cards);
+        if (game.community_cards != null) {
+            mergedCards.addAll(game.community_cards);
+        }
+
+        // 3-4nel ALL-IN
+        if (hasThree(mergedCards) || hasFour(mergedCards)) {
+            System.err.println("kozossel egyutt > van harmas/negyes: " + Arrays.toString(mergedCards.toArray()));
             return player.stack;
         }
 
@@ -59,6 +73,36 @@ public class XPlayer {
         cards.forEach(c -> ranks.put(c.rank, ranks.getOrDefault(c.rank, 0) + 1));
         final long pairs = ranks.values().stream().filter(i -> i == 2).count();
         return pairs > 0;
+    }
+
+    /**
+     * A listaban van-e harmas
+     *
+     * @param cards
+     * @return
+     */
+    private static boolean hasThree(List<Card> cards) {
+        // sorbarendezzuk es utana rank-ok szerint csoportositjuk
+        Collections.sort(cards);
+        final Map<String, Integer> ranks = new HashMap<>();
+        cards.forEach(c -> ranks.put(c.rank, ranks.getOrDefault(c.rank, 0) + 1));
+        final long threes = ranks.values().stream().filter(i -> i == 3).count();
+        return threes > 0;
+    }
+
+    /**
+     * A listaban van-e negy ugyanolyan
+     *
+     * @param cards
+     * @return
+     */
+    private static boolean hasFour(List<Card> cards) {
+        // sorbarendezzuk es utana rank-ok szerint csoportositjuk
+        Collections.sort(cards);
+        final Map<String, Integer> ranks = new HashMap<>();
+        cards.forEach(c -> ranks.put(c.rank, ranks.getOrDefault(c.rank, 0) + 1));
+        final long threes = ranks.values().stream().filter(i -> i == 4).count();
+        return threes > 0;
     }
 
     /**
