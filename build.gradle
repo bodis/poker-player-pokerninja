@@ -3,6 +3,7 @@ apply plugin: 'war'
 apply plugin: 'tomcat'
 
 sourceCompatibility = 1.8
+targetCompatibility = 1.8
 version = '1.0'
 
 repositories {
