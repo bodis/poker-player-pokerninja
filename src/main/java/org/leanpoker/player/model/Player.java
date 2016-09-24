@@ -1,5 +1,6 @@
 package org.leanpoker.player.model;
 
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -10,8 +11,8 @@ public class Player {
     public int stack;
     public Status status;
     public int bet;
-    public List<Card> hole_cards;
-    public String vwersion;
+    public List<Card> hole_cards = new LinkedList<>();
+    public String version;
     public int id;
 
 }
