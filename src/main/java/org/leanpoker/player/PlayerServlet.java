@@ -17,8 +17,8 @@ import java.io.IOException;
 public class PlayerServlet extends HttpServlet {
 
 
-    static IPlayer player = new PokerPlayer14();
-    static IPlayer fallbackPlayer = new PokerPlayer13();
+    static IPlayer player = new PokerPlayer15();
+    static IPlayer fallbackPlayer = new PokerPlayer14();
 
 
     @Override
