@@ -20,9 +20,6 @@ public interface IPlayer {
     String getVersion();
 
 
-
-
-
     /**
      * A listaban van-e par
      *

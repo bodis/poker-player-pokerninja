@@ -17,8 +17,8 @@ import java.io.IOException;
 public class PlayerServlet extends HttpServlet {
 
 
-    static IPlayer player = new PokerPlayer16();
-    static IPlayer fallbackPlayer = new PokerPlayer15();
+    static IPlayer player = new PokerPlayer19();
+    static IPlayer fallbackPlayer = new PokerPlayer18();
 
     
     
@@ -79,7 +79,6 @@ public class PlayerServlet extends HttpServlet {
     		}
     		if (action.equals("showdown")) {
     			String gameState = req.getParameter("game_state");
-    			
     			player.showdown(new JsonParser().parse(gameState));
     		}
     		if (action.equals("version")) {
