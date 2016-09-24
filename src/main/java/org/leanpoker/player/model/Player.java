@@ -8,12 +8,12 @@ import java.util.List;
  */
 public class Player {
     public String name;
-    public double stack;
+    public int stack;
     public Status status;
-    public double bet;
+    public int bet;
     public List<Card> hole_cards = new LinkedList<>();
     public String version;
-    public double id;
+    public int id;
 
     @Override
     public String toString() {
