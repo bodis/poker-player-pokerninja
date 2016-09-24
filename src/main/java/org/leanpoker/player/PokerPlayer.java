@@ -5,7 +5,9 @@ import org.leanpoker.player.model.Card;
 import org.leanpoker.player.model.GameState;
 import org.leanpoker.player.model.Player;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * Created by János on 9/24/2016.
@@ -14,14 +16,11 @@ public class PokerPlayer implements IPlayer {
 
     public static final String VERSION = "10b";
 
-    public final String version;
-
-    public PokerPlayer(String version) {
-        this.version = version;
+    public PokerPlayer() {
     }
 
     public String getVersion() {
-        return version;
+        return VERSION;
     }
 
     public int betRequest(GameState game) {
