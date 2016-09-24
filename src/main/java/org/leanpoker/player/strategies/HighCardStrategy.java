@@ -26,12 +26,17 @@ public class HighCardStrategy extends AbstractBetStrategy {
 		
 		Collections.sort(orderedCards);
 		
+		Card playerHighCard = getHighCard(player.hole_cards);
+		
+		
 		String rank = orderedCards.getLast().rank;
 		System.err.println(getClass().getName() + " - rank : " + rank);
 		int rankIndex = Card.RANKS.indexOf(rank);
 		System.err.println(getClass().getName() + " - rankIndex : " + rankIndex);
 		if (rankIndex > 9) {
-			
+			if (2 < cards.size() && 0 < playerHighCard.compareTo(getHighCard(cards))) {
+				return Optional.empty();
+			}
 		}
 		
 		return Optional.empty();

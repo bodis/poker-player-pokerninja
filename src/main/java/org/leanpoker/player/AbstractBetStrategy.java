@@ -19,5 +19,7 @@ public abstract class AbstractBetStrategy implements IBetStrategy {
 		return ((IBetStrategy) this).compareTo(o);
 	}
 
-	
+	public int tartom(Player player, GameState game) {
+		return Math.max(0, game.current_buy_in - player.bet);
+	}
 }
