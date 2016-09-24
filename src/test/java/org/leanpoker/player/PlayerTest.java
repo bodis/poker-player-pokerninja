@@ -1,10 +1,7 @@
 package org.leanpoker.player;
 
 import com.google.gson.Gson;
-<<<<<<< HEAD
-=======
 import com.google.gson.GsonBuilder;
->>>>>>> fb88018cbb4e5f47d622aad81845cc46360f0d14
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
 import org.junit.Assert;
