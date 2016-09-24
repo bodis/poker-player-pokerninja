@@ -113,7 +113,7 @@ public class XPlayer {
         // sorbarendezzuk es utana rank-ok szerint csoportositjuk
         Collections.sort(cards);
         if (cards.size() > 0) {
-            return cards.get(0);
+            return cards.get(cards.size() - 1);
         }
         return null;
     }
