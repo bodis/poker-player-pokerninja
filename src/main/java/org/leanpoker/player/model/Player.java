@@ -8,11 +8,11 @@ import java.util.List;
  */
 public class Player {
     public String name;
-    public int stack;
+    public double stack;
     public Status status;
-    public int bet;
+    public double bet;
     public List<Card> hole_cards = new LinkedList<>();
     public String version;
-    public int id;
+    public double id;
 
 }

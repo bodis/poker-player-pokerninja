@@ -10,12 +10,14 @@ public class GameState {
     public List<Player> players = new LinkedList<>();
     public String tournament_id;
     public String game_id;
-    public int round;
-    public int         bet_index;
-    public int         small_blind;
-    public int         orbits;
-    public int         dealer;
+    public double round;
+    public double         bet_index;
+    public double         small_blind;
+    public double         orbits;
+    public double         dealer;
     public List<Card> community_cards = new LinkedList<>();
-    public int current_buy_in;
-    public int pot;
+    public double current_buy_in;
+    public double pot;
+
+
 }
