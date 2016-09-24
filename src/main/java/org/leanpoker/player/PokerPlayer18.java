@@ -46,7 +46,7 @@ public class PokerPlayer18 implements IPlayer {
             final Card card = player.hole_cards.get(0);
             System.err.println("van par > " + card);
             // elso korben ha nagy lapunk van emelunk max/2
-            if (game.community_cards == null || game.community_cards.size() == 0) {
+            if (game.orbits < 2) {
                 // ha a kezben magas parunk van + elso korben vagyunk, akkor max/4
                 if (card.rank.equalsIgnoreCase("J") || card.rank.equalsIgnoreCase("Q") || card.rank.equalsIgnoreCase("K") || card.rank.equalsIgnoreCase("A")) {
                     System.err.println("elso korben vagyunk + parunk van kezben + magas par");
