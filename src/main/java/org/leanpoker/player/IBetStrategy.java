@@ -6,6 +6,7 @@ import org.leanpoker.player.model.Player;
 
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -90,4 +91,21 @@ public interface IBetStrategy extends Comparable<IBetStrategy> {
         return null;
     }
 
+    default Map<String, List<Card>> group(List<Card> cards) {
+    	Map<String, List<Card>> groups = new HashMap<>();
+
+        for (Card card : cards) {
+            List<Card> groupCards;
+            if (groups.containsKey(card.rank)) {
+                groupCards = groups.get(card.rank);
+            } else {
+                groupCards = new LinkedList<>();
+                groups.put(card.rank, groupCards);
+            }
+            groupCards.add(card);
+        }
+
+        System.err.println(groups);
+        return groups;
+    }
 }
