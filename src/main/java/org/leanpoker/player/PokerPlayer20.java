@@ -12,13 +12,13 @@ import java.util.List;
 /**
  * Created by János on 9/24/2016.
  */
-public class PokerPlayer19 implements IPlayer {
+public class PokerPlayer20 implements IPlayer {
 
-    public static final String VERSION = "19";
+    public static final String VERSION = "20";
 
     private int threshold = 100;
 
-    public PokerPlayer19() {
+    public PokerPlayer20() {
     }
 
     public String getVersion() {
@@ -54,7 +54,7 @@ public class PokerPlayer19 implements IPlayer {
                 } else {
                     // alacsony parnal csak tartunk
                     System.err.println("elso korben vagyunk + parunk van kezben + alacsony par");
-                    return Math.max(0, game.current_buy_in - player.bet);
+                    return Math.min(0, game.current_buy_in - player.bet);
                 }
             }
 
@@ -84,13 +84,7 @@ public class PokerPlayer19 implements IPlayer {
         // 2-nel emeles
         if (hasPair(mergedCards)) {
             System.err.println("kozossel egyutt > par: " + Arrays.toString(mergedCards.toArray()));
-            // de ha a par a kozos reszekben van, akkor az nem er semmit ezert max csak megadjuk
-            if (hasPair(game.community_cards) || hasThree(game.community_cards) || hasFour(game.community_cards)) {
-                System.err.println("kozossel egyutt > csak a kozos lapokbol vagyunk jok ezert biztos nem emelunk");
-                return Math.max(0, game.current_buy_in - player.bet);
-            } else {
-                return game.current_buy_in;
-            }
+            return Math.max(0, game.current_buy_in - player.bet);
         }
 
         // 3-4nel ALL-IN
