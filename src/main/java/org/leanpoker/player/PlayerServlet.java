@@ -20,6 +20,8 @@ public class PlayerServlet extends HttpServlet {
     static IPlayer player = new PokerPlayer14();
     static IPlayer fallbackPlayer = new PokerPlayer13();
 
+    
+    
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -60,21 +62,35 @@ public class PlayerServlet extends HttpServlet {
     }
 
     protected void doPost(HttpServletRequest req, HttpServletResponse resp, IPlayer player) throws ServletException, IOException {
-        if (req.getParameter("action").equals("bet_request")) {
-            String gameState = req.getParameter("game_state");
-            System.err.println("\n" + gameState + "\n");
-            Gson gson = new GsonBuilder().create();
-            int result = player.betRequest(gson.fromJson(gameState, GameState.class));
-            System.err.println("\n valasz: " + result + "\n");
-            resp.getWriter().print(result);
-        }
-        if (req.getParameter("action").equals("showdown")) {
-            String gameState = req.getParameter("game_state");
-
-            player.showdown(new JsonParser().parse(gameState));
-        }
-        if (req.getParameter("action").equals("version")) {
-            resp.getWriter().print(player.getVersion());
-        }
+    	long startTime = System.nanoTime();
+    	try {
+    		final String action = req.getParameter("action");
+    		
+    		System.err.println("action : " + action);
+    		System.err.println("player version : " + player.getVersion());
+    		
+    		if (action.equals("bet_request")) {
+    			String gameState = req.getParameter("game_state");
+    			System.err.println("\n" + gameState + "\n");
+    			Gson gson = new GsonBuilder().create();
+    			int result = player.betRequest(gson.fromJson(gameState, GameState.class));
+    			System.err.println("\n valasz: " + result + "\n");
+    			resp.getWriter().print(result);
+    		}
+    		if (action.equals("showdown")) {
+    			String gameState = req.getParameter("game_state");
+    			
+    			player.showdown(new JsonParser().parse(gameState));
+    		}
+    		if (action.equals("version")) {
+    			resp.getWriter().print(player.getVersion());
+    		}
+    	} catch (IOException | RuntimeException e) {
+    		System.err.println("HIBA; player version : " + player.getVersion());
+    		throw e;
+    	} finally {
+    		long endTime = System.nanoTime();
+    		System.err.println("Execution time in nanos : " + (endTime - startTime));
+    	}
     }
 }
