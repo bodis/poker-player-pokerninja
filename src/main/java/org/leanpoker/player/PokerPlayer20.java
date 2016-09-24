@@ -14,7 +14,7 @@ import java.util.List;
  */
 public class PokerPlayer20 implements IPlayer {
 
-    public static final String VERSION = "20";
+    public static final String VERSION = "20b";
 
     private int threshold = 100;
 
@@ -84,7 +84,13 @@ public class PokerPlayer20 implements IPlayer {
         // 2-nel emeles
         if (hasPair(mergedCards)) {
             System.err.println("kozossel egyutt > par: " + Arrays.toString(mergedCards.toArray()));
-            return Math.max(0, game.current_buy_in - player.bet);
+            int mennyitKellBerakni = Math.max(0, game.current_buy_in - player.bet);
+            int eddigiPot = player.bet;
+            if (eddigiPot<200 && mennyitKellBerakni>400) {
+                return 0;
+            } else {
+                return Math.max(0, game.current_buy_in - player.bet);
+            }
         }
 
         // 3-4nel ALL-IN
