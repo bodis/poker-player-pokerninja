@@ -14,7 +14,7 @@ import java.util.List;
  */
 public class PokerPlayer14 implements IPlayer {
 
-    public static final String VERSION = "14";
+    public static final String VERSION = "14b";
 
     public PokerPlayer14() {
     }

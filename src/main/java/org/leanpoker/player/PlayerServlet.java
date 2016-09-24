@@ -2,6 +2,7 @@ package org.leanpoker.player;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
 import org.leanpoker.player.model.GameState;
 
@@ -28,10 +29,33 @@ public class PlayerServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         try {
-            doPost(req, resp, player);
-        } catch (Exception e) {
-            e.printStackTrace();
-            doPost(req, resp, fallbackPlayer);
+            try {
+                doPost(req, resp, player);
+            } catch (Throwable e) {
+                System.err.println("HIBA!!! tortent: " + e.getMessage());
+                e.printStackTrace();
+                doPost(req, resp, fallbackPlayer);
+            }
+        } catch (Throwable t) {
+            System.err.println(" ----> FALLBACK - HIBA!!! tortent: " + t.getMessage());
+            t.printStackTrace();
+            doPost(req, resp, new IPlayer() {
+                @Override
+                public int betRequest(GameState game) {
+                    return 0;
+                }
+
+                @Override
+                public void showdown(JsonElement game) {
+
+                }
+
+                @Override
+                public String getVersion() {
+                    return "0000";
+                }
+            });
+
         }
     }
 
