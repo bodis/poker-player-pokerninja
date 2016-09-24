@@ -129,7 +129,7 @@ public class PokerPlayer19 implements IPlayer {
             }
 
             // kulonben csak megadunk
-            return Math.min(0, game.current_buy_in - player.bet);
+            return Math.max(0, game.current_buy_in - player.bet);
         }
 
         return 0;
