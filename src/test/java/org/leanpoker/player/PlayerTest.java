@@ -17,17 +17,6 @@ import static org.junit.Assert.assertEquals;
 public class PlayerTest {
 
     @Test
-    public void testBetRequest() throws Exception {
-
-        JsonElement jsonElement = new JsonParser().parse("{\"key1\": \"value1\", \"key2\": \"value2\"}");
-        Gson gson = new GsonBuilder().create();
-        assertEquals(0, Player.betRequest(gson.fromJson(jsonElement, Map.class)));
-
-    }
-
-
-
-    @Test
     public void testParseGameState() throws Exception {
         String gameStateString = "{\n" +
                 "    \"tournament_id\":\"550d1d68cd7bd10003000003\",     // Id of the current tournament\n" +

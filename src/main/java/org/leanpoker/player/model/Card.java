@@ -1,6 +1,5 @@
 package org.leanpoker.player.model;
 
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -22,5 +21,13 @@ public class Card implements Comparable<Card> {
         int oIndex = RANKS.indexOf(o.rank.toUpperCase());
 
         return index - oIndex;
+    }
+
+    @Override
+    public String toString() {
+        return "Card{" +
+                "rank='" + rank + '\'' +
+                ", suit=" + suit +
+                '}';
     }
 }

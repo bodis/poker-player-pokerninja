@@ -15,4 +15,16 @@ public class Player {
     public String version;
     public double id;
 
+    @Override
+    public String toString() {
+        return "Player{" +
+                "name='" + name + '\'' +
+                ", stack=" + stack +
+                ", status=" + status +
+                ", bet=" + bet +
+                ", hole_cards=" + hole_cards +
+                ", version='" + version + '\'' +
+                ", id=" + id +
+                '}';
+    }
 }
