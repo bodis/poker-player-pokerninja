@@ -12,6 +12,8 @@ import java.util.*;
  */
 public class PokerPlayer implements IPlayer {
 
+    public static final String VERSION = "10";
+
     public final String version;
 
     public PokerPlayer(String version) {

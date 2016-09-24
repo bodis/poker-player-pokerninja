@@ -49,7 +49,7 @@ public class XPlayer {
         final Card highCard = getHighCard(player.hole_cards);
         System.err.println("magas kartyank: " + highCard);
         if (highCard.rank.equalsIgnoreCase("10") || highCard.rank.equalsIgnoreCase("J") || highCard.rank.equalsIgnoreCase("Q") || highCard.rank.equalsIgnoreCase("K") || highCard.rank.equalsIgnoreCase("A")) {
-            System.err.println("elfogadott magas kartya: " + highCard);
+            System.err.println("van magas kartyank: " + highCard + " current_buy_in:" + game.current_buy_in);
             return game.current_buy_in;
         }
 
