@@ -23,4 +23,12 @@ public class Card implements Comparable<Card> {
 
         return index - oIndex;
     }
+
+    @Override
+    public String toString() {
+        return "Card{" +
+                "rank='" + rank + '\'' +
+                ", suit=" + suit +
+                '}';
+    }
 }
