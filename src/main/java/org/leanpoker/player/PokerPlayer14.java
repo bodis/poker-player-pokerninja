@@ -47,8 +47,10 @@ public class PokerPlayer14 implements IPlayer {
                 // ha a kezben magas parunk van + elso korben vagyunk, akkor max/2
                 final Card card = player.hole_cards.get(0);
                 if (card.rank.equalsIgnoreCase("J") || card.rank.equalsIgnoreCase("Q") || card.rank.equalsIgnoreCase("K") || card.rank.equalsIgnoreCase("A")) {
+                    System.err.println("elso korben vagyunk + parunk van kezben + magas par");
                     return (int) Math.round((double) player.stack / 2);
                 } else {
+                    System.err.println("elso korben vagyunk + parunk van kezben + alacsony par");
                     // alacsony parnal csak tartunk
                     return game.current_buy_in;
                 }
