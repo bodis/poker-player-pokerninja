@@ -12,7 +12,7 @@ import java.util.*;
  */
 public class PokerPlayer implements IPlayer {
 
-    public static final String VERSION = "10";
+    public static final String VERSION = "10b";
 
     public final String version;
 
@@ -71,66 +71,4 @@ public class PokerPlayer implements IPlayer {
 
     public void showdown(JsonElement game) {
     }
-
-    /**
-     * A listaban van-e par
-     *
-     * @param cards
-     * @return
-     */
-    private boolean hasPair(List<Card> cards) {
-        // sorbarendezzuk es utana rank-ok szerint csoportositjuk
-        Collections.sort(cards);
-        final Map<String, Integer> ranks = new HashMap<>();
-        cards.forEach(c -> ranks.put(c.rank, ranks.getOrDefault(c.rank, 0) + 1));
-        final long pairs = ranks.values().stream().filter(i -> i == 2).count();
-        return pairs > 0;
-    }
-
-    /**
-     * A listaban van-e harmas
-     *
-     * @param cards
-     * @return
-     */
-    private boolean hasThree(List<Card> cards) {
-        // sorbarendezzuk es utana rank-ok szerint csoportositjuk
-        Collections.sort(cards);
-        final Map<String, Integer> ranks = new HashMap<>();
-        cards.forEach(c -> ranks.put(c.rank, ranks.getOrDefault(c.rank, 0) + 1));
-        final long threes = ranks.values().stream().filter(i -> i == 3).count();
-        return threes > 0;
-    }
-
-    /**
-     * A listaban van-e negy ugyanolyan
-     *
-     * @param cards
-     * @return
-     */
-    private boolean hasFour(List<Card> cards) {
-        // sorbarendezzuk es utana rank-ok szerint csoportositjuk
-        Collections.sort(cards);
-        final Map<String, Integer> ranks = new HashMap<>();
-        cards.forEach(c -> ranks.put(c.rank, ranks.getOrDefault(c.rank, 0) + 1));
-        final long threes = ranks.values().stream().filter(i -> i == 4).count();
-        return threes > 0;
-    }
-
-    /**
-     * Get the highest Card from Hand
-     *
-     * @return highest card
-     */
-    public static Card getHighCard(List<Card> cards) {
-        // sorbarendezzuk es utana rank-ok szerint csoportositjuk
-        Collections.sort(cards);
-        if (cards.size() > 0) {
-            return cards.get(cards.size() - 1);
-        }
-        return null;
-    }
-    // final Stream<Card> sortedCards = Stream.concat(flop.stream(), cards.stream()).sorted(byRankComparator);
-
-
 }
