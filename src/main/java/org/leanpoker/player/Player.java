@@ -6,9 +6,13 @@ import java.util.Map;
 
 public class Player {
 
-    static final String VERSION = "Default Java folding player";
+    static final String VERSION = "2";
 
-    public static int betRequest(JsonElement request) {
+    public static int betRequest(Map<String, Object> request) {
+        Object current_buy_in = request.get("current_buy_in");
+        if (current_buy_in != null) {
+            return Integer.valueOf(current_buy_in.toString());
+        }
         return 0;
     }
 
