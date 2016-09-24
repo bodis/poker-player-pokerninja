@@ -1,13 +1,13 @@
 package org.leanpoker.player;
 
-import com.google.gson.JsonElement;
+import org.leanpoker.player.strategies.AllSameColorStrategy;
+import org.leanpoker.player.strategies.DrillStrategy;
+import org.leanpoker.player.strategies.FullHouseStrategy;
+import org.leanpoker.player.strategies.OnePairStrategy;
+import org.leanpoker.player.strategies.PokerStrategy;
+import org.leanpoker.player.strategies.TwoPairStrategy;
 
-import strategies.AllSameColorStrategy;
-import strategies.DrillStrategy;
-import strategies.FullHouseStrategy;
-import strategies.OnePairStrategy;
-import strategies.PokerStrategy;
-import strategies.TwoPairStrategy;
+import com.google.gson.JsonElement;
 
 public class StrategyPokerPlayer1 extends AbstractPlayer {
 

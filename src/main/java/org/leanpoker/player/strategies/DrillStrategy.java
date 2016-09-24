@@ -1,4 +1,4 @@
-package strategies;
+package org.leanpoker.player.strategies;
 
 import java.util.List;
 import java.util.Map;
@@ -10,12 +10,13 @@ import org.leanpoker.player.model.Card;
 import org.leanpoker.player.model.GameState;
 import org.leanpoker.player.model.Player;
 
-public class PokerStrategy extends AbstractBetStrategy {
+public class DrillStrategy extends AbstractBetStrategy {
 
 	@Override
 	public Optional<IBet> getBet(List<Card> cards, GameState game, Player player) {
 
-		if (hasFour(cards)) {
+		
+		if (hasThree(cards)) {
 			
 		}
 		
@@ -24,7 +25,7 @@ public class PokerStrategy extends AbstractBetStrategy {
 	
 	@Override
 	public double getWeight() {
-		return 5;
+		return 3;
 	}
 
 }

@@ -1,4 +1,4 @@
-package strategies;
+package org.leanpoker.player.strategies;
 
 import java.util.List;
 import java.util.Map;
