@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.leanpoker.player.AbstractBetStrategy;
+import org.leanpoker.player.Bet;
 import org.leanpoker.player.IBet;
 import org.leanpoker.player.IBetStrategy;
 import org.leanpoker.player.helpers.CardHelper;
@@ -34,8 +35,13 @@ public class HighCardStrategy extends AbstractBetStrategy {
 		int rankIndex = Card.RANKS.indexOf(rank);
 		System.err.println(getClass().getName() + " - rankIndex : " + rankIndex);
 		if (rankIndex > 9) {
-			if (2 < cards.size() && 0 < playerHighCard.compareTo(getHighCard(cards))) {
+			if (2 < cards.size() && 0 >= playerHighCard.compareTo(getHighCard(cards))) {
+				// high card on the table
 				return Optional.empty();
+			}
+			if (game.current_buy_in < 100) {
+				// nem kell sokat betenni
+				return Optional.of(new Bet(tartom(player, game), this, cards));
 			}
 		}
 		

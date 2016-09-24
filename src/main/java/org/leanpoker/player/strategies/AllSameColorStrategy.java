@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.leanpoker.player.AbstractBetStrategy;
+import org.leanpoker.player.Bet;
 import org.leanpoker.player.IBet;
 import org.leanpoker.player.IBetStrategy;
 import org.leanpoker.player.helpers.CardHelper;
@@ -21,7 +22,7 @@ public class AllSameColorStrategy extends AbstractBetStrategy {
 		Suit suit = cards.get(0).suit;
 		
 		if (cards.stream().map(c -> c.suit).allMatch(suit::equals)) {
-			
+			return Optional.of(new Bet(player.stack / 2, this, cards));
 		}
 		
 		return Optional.empty();

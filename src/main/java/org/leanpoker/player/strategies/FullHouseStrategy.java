@@ -5,6 +5,7 @@ import java.util.Map;
 import java.util.Optional;
 
 import org.leanpoker.player.AbstractBetStrategy;
+import org.leanpoker.player.Bet;
 import org.leanpoker.player.IBet;
 import org.leanpoker.player.model.Card;
 import org.leanpoker.player.model.GameState;
@@ -21,8 +22,9 @@ public class FullHouseStrategy extends AbstractBetStrategy {
 		long numberOfTwoParis = group.entrySet().stream().filter(e -> e.getValue().size() == 2).count();
 		long numberOfThreeParis = group.entrySet().stream().filter(e -> e.getValue().size() == 3).count();
 		
-		if (0 != numberOfTwoParis && 0 != numberOfThreeParis) {
-			
+		if (0 != numberOfTwoParis && 0 != numberOfThreeParis && hasPair(player.hole_cards)) {
+			return Optional.of(new Bet(player.stack / 2, this, cards));
+
 		}
 
 		

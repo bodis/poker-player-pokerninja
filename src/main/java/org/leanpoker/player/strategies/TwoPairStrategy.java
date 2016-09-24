@@ -5,6 +5,7 @@ import java.util.Map;
 import java.util.Optional;
 
 import org.leanpoker.player.AbstractBetStrategy;
+import org.leanpoker.player.Bet;
 import org.leanpoker.player.IBet;
 import org.leanpoker.player.model.Card;
 import org.leanpoker.player.model.GameState;
@@ -18,8 +19,9 @@ public class TwoPairStrategy extends AbstractBetStrategy {
 		Map<String, List<Card>> group = group(cards);
 		long numberOfTwoParis = group.entrySet().stream().filter(e -> e.getValue().size() == 2).count();
 		
-		if (2 == numberOfTwoParis) {
-			
+		if (2 == numberOfTwoParis && hasPair(player.hole_cards)) {
+			return Optional.of(new Bet(player.stack / 3, this, cards));
+
 		}
 		
 		return super.getBet(cards, game, player);
