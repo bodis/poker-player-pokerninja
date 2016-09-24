@@ -39,7 +39,7 @@ public class HighCardStrategy extends AbstractBetStrategy {
 
 	@Override
 	public double getWeight() {
-		return 1;
+		return 0.5;
 	}
 
 }
