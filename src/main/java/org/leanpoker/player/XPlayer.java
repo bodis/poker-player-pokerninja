@@ -9,7 +9,7 @@ import java.util.*;
 
 public class XPlayer {
 
-    static final String VERSION = "7";
+    static final String VERSION = "8";
 
     public static int betRequest(GameState game) {
         // ez az ellenorzes holddown-ra nem mukodik mert mindenkinel megjelenneka kartyak
