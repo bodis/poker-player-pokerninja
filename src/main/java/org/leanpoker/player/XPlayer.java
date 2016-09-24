@@ -6,11 +6,10 @@ import org.leanpoker.player.model.GameState;
 import org.leanpoker.player.model.Player;
 
 import java.util.*;
-import java.util.stream.Stream;
 
 public class XPlayer {
 
-    static final String VERSION = "6";
+    static final String VERSION = "7";
 
     public static int betRequest(GameState game) {
         // ez az ellenorzes holddown-ra nem mukodik mert mindenkinel megjelenneka kartyak

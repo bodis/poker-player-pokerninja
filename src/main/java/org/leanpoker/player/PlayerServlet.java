@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.Map;
 
 @WebServlet("/")
 public class PlayerServlet extends HttpServlet {
@@ -27,7 +26,9 @@ public class PlayerServlet extends HttpServlet {
             String gameState = req.getParameter("game_state");
             System.err.println("\n" + gameState + "\n");
             Gson gson = new GsonBuilder().create();
-            resp.getWriter().print(XPlayer.betRequest(gson.fromJson(gameState, GameState.class)));
+            int result = XPlayer.betRequest(gson.fromJson(gameState, GameState.class));
+            System.err.println("\n valasz: " + result + "\n");
+            resp.getWriter().print(result);
         }
         if (req.getParameter("action").equals("showdown")) {
             String gameState = req.getParameter("game_state");
