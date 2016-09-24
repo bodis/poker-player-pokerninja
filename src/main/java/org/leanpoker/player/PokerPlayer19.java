@@ -64,8 +64,9 @@ public class PokerPlayer19 implements IPlayer {
                 if (card.rank.equalsIgnoreCase("J") || card.rank.equalsIgnoreCase("Q") || card.rank.equalsIgnoreCase("K") || card.rank.equalsIgnoreCase("A")) {
                     return game.current_buy_in - player.bet;
                 }
-                // nem kockaztatunk egy szint felett
+                // nem kockaztatunk
                 else {
+                    // TODO: egy szint felett
                     return 0;
                 }
             }
