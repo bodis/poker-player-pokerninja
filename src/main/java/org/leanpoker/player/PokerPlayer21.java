@@ -12,13 +12,13 @@ import java.util.List;
 /**
  * Created by János on 9/24/2016.
  */
-public class PokerPlayer20 implements IPlayer {
+public class PokerPlayer21 implements IPlayer {
 
-    public static final String VERSION = "20b";
+    public static final String VERSION = "21";
 
     private int threshold = 100;
 
-    public PokerPlayer20() {
+    public PokerPlayer21() {
     }
 
     public String getVersion() {
@@ -86,7 +86,7 @@ public class PokerPlayer20 implements IPlayer {
             System.err.println("kozossel egyutt > par: " + Arrays.toString(mergedCards.toArray()));
             int mennyitKellBerakni = Math.max(0, game.current_buy_in - player.bet);
             int eddigiPot = player.bet;
-            if (eddigiPot<200 && mennyitKellBerakni>400) {
+            if (eddigiPot < 200 && mennyitKellBerakni > 400) {
                 return 0;
             } else {
                 return Math.max(0, game.current_buy_in - player.bet);
@@ -112,10 +112,11 @@ public class PokerPlayer20 implements IPlayer {
             - ha csak magas kartyank van es valaki nagyot emel + meg nem kockaztattunk nagyot -> ELDOBJUK
 
          */
+        /*
         final Card highCard = getHighCard(player.hole_cards);
-        System.err.println("magas kartyank: " + highCard);
-        if (highCard.rank.equalsIgnoreCase("10") || highCard.rank.equalsIgnoreCase("J") || highCard.rank.equalsIgnoreCase("Q") || highCard.rank.equalsIgnoreCase("K") || highCard.rank.equalsIgnoreCase("A")) {
-            System.err.println("elfogadott magas kartya: " + highCard);
+        final Card highCardInCommon = getHighCard(game.community_cards);
+        if (highCard.compareTo(highCardInCommon) > 0) {
+            System.err.println("magas kartyank van: " + highCard);
             // ha nagyot emeltek
             if (game.current_buy_in > threshold) {
                 // elso korben vagyunk meg csak -> kilepunk
@@ -130,7 +131,8 @@ public class PokerPlayer20 implements IPlayer {
 
             // kulonben csak megadunk
             return Math.max(0, game.current_buy_in - player.bet);
-        }
+            }
+            */
 
         return 0;
     }
