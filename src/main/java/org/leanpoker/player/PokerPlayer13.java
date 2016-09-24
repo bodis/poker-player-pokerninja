@@ -12,11 +12,11 @@ import java.util.List;
 /**
  * Created by János on 9/24/2016.
  */
-public class PokerPlayer12 implements IPlayer {
+public class PokerPlayer13 implements IPlayer {
 
-    public static final String VERSION = "12";
+    public static final String VERSION = "13";
 
-    public PokerPlayer12() {
+    public PokerPlayer13() {
     }
 
     public String getVersion() {
@@ -58,7 +58,8 @@ public class PokerPlayer12 implements IPlayer {
         // 2-nel emeles
         if (hasPair(mergedCards)) {
             System.err.println("kozossel egyutt > par: " + Arrays.toString(mergedCards.toArray()));
-            return player.stack;
+            // csak megadjuk itt mar
+            return game.current_buy_in;
         }
 
         // 3-4nel ALL-IN
