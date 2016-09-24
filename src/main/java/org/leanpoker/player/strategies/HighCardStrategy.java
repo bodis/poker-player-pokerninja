@@ -1,5 +1,7 @@
 package org.leanpoker.player.strategies;
 
+import java.util.Collections;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
 
@@ -11,12 +13,27 @@ import org.leanpoker.player.model.Card;
 import org.leanpoker.player.model.GameState;
 import org.leanpoker.player.model.Player;
 
+import com.google.common.collect.ImmutableList;
+import com.google.common.collect.Lists;
+
 public class HighCardStrategy extends AbstractBetStrategy {
 
 
 	@Override
 	public Optional<IBet> getBet(List<Card> cards, GameState game, Player player) {
-
+		
+		LinkedList<Card> orderedCards = Lists.newLinkedList(cards);
+		
+		Collections.sort(orderedCards);
+		
+		String rank = orderedCards.getLast().rank;
+		System.err.println(getClass().getName() + " - rank : " + rank);
+		int rankIndex = Card.RANKS.indexOf(rank);
+		System.err.println(getClass().getName() + " - rankIndex : " + rankIndex);
+		if (rankIndex > 9) {
+			
+		}
+		
 		return Optional.empty();
 	}
 

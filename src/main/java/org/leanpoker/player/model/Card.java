@@ -11,7 +11,7 @@ import static java.util.Arrays.asList;
  */
 public class Card implements Comparable<Card> {
 
-    private static final List<String> RANKS = Collections.unmodifiableList(asList("2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A"));
+    public static final List<String> RANKS = Collections.unmodifiableList(asList("2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A"));
 
     public static final List<Card> ALL_CARDS;
 
