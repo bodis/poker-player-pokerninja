@@ -1,6 +1,10 @@
 package org.leanpoker.player;
 
 import com.google.gson.Gson;
+<<<<<<< HEAD
+=======
+import com.google.gson.GsonBuilder;
+>>>>>>> fb88018cbb4e5f47d622aad81845cc46360f0d14
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
 import org.junit.Assert;
@@ -8,6 +12,8 @@ import org.junit.Test;
 import org.leanpoker.player.model.GameState;
 import org.leanpoker.player.model.Status;
 import org.leanpoker.player.model.Suit;
+
+import java.util.Map;
 
 import static org.junit.Assert.assertEquals;
 
@@ -17,8 +23,8 @@ public class PlayerTest {
     public void testBetRequest() throws Exception {
 
         JsonElement jsonElement = new JsonParser().parse("{\"key1\": \"value1\", \"key2\": \"value2\"}");
-
-        assertEquals(0, Player.betRequest(jsonElement));
+        Gson gson = new GsonBuilder().create();
+        assertEquals(0, Player.betRequest(gson.fromJson(jsonElement, Map.class)));
 
     }
 
