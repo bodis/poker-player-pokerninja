@@ -6,12 +6,12 @@ import java.util.Map;
 
 public class Player {
 
-    static final String VERSION = "2";
+    static final String VERSION = "3";
 
     public static int betRequest(Map<String, Object> request) {
-        Object current_buy_in = request.get("current_buy_in");
+        Number current_buy_in = (Number) request.get("current_buy_in");
         if (current_buy_in != null) {
-            return Integer.valueOf(current_buy_in.toString());
+            return current_buy_in.intValue();
         }
         return 0;
     }
