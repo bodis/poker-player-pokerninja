@@ -41,16 +41,16 @@ public class PokerPlayer18 implements IPlayer {
         System.err.println("sajat kartyak: " + player.hole_cards);
         System.err.println("kozos kartyak: " + game.community_cards);
 
-        // PAR eseten
+        // PAR van a kezunkben
         if (hasPair(player.hole_cards)) {
-            System.err.println("van par");
             final Card card = player.hole_cards.get(0);
-            // csak elso korben kell valamit is tennunk
+            System.err.println("van par > " + card);
+            // elso korben ha nagy lapunk van emelunk max/2
             if (game.community_cards == null || game.community_cards.size() == 0) {
-                // ha a kezben magas parunk van + elso korben vagyunk, akkor max/2
+                // ha a kezben magas parunk van + elso korben vagyunk, akkor max/4
                 if (card.rank.equalsIgnoreCase("J") || card.rank.equalsIgnoreCase("Q") || card.rank.equalsIgnoreCase("K") || card.rank.equalsIgnoreCase("A")) {
                     System.err.println("elso korben vagyunk + parunk van kezben + magas par");
-                    return (int) Math.round((double) player.stack / 2);
+                    return (int) Math.max(Math.round((double) player.stack / 4), game.current_buy_in - player.bet);
                 } else {
                     // alacsony parnal csak tartunk
                     System.err.println("elso korben vagyunk + parunk van kezben + alacsony par");
